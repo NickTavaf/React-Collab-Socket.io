@@ -1,42 +1,113 @@
+/* no scroll, full height */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Vite root */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Louvre background */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./lourve.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* stack title, canvas, controls */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* title above frame */
+.title {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
-.card {
-  padding: 2em;
+/* canvas styling */
+.canvas-painting {
+  /* border: 14px solid #c9a464;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4); */
+  background-color: transparent;
+  cursor: crosshair;
+  margin-top: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+/* controls under frame */
+.controls {
+  margin-top: 20px;
+  text-align: center;
+  color: white;
 }
+
+/* fruit button row */
+.fruit-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.fruit-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;  /* needed for the mask */
+  overflow: hidden;    /* cut mask to circle */
+}
+
+.fruit-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* dark mask that shrinks as cooldown goes down */
+.fruit-cooldown-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);  /* how “greyed out” it looks */
+  pointer-events: none;
+  transition: height 0.1s linear;   /* smooth fill change */
+}
+
+/* selected highlight stays the same */
+.fruit-circle.selected {
+  border-color: white;
+  box-shadow: 0 0 0 3px #c9a464;
+}
+
+
