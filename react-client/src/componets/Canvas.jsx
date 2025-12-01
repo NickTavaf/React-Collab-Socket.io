@@ -52,7 +52,7 @@ export default function Canvas({ brushColor, brushSize, onPaint, isOnCooldown })
 
     // background image
     const img = new Image();
-    img.src = "/mona-lisa.png"; // make sure this exists in /public
+    img.src = "./mona-lisa.png"; // make sure this exists in /public
     img.onload = () => {
       ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     };
